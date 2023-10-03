@@ -1,0 +1,111 @@
+{% extends "filmapp/base.html" %}
+
+{% load static %}
+
+    {% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 main-content">
+                <div class="blog-container">
+                    {% if blog.image %}
+                    <div class="text-center"> <!-- Center-align the image -->
+                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
+                    </div>
+                    {% endif %}
+                    <h2 class="blog-title text-center">{{ blog.title }}</h2> <!-- Center-align the title -->
+                    <p class="blog-meta text-center"> <!-- Center-align the meta information -->
+                        Posted on {{ blog.created_at|date:"F d, Y" }} | by
+                        <a href="{% url 'filmapp:author_posts' author_id=blog.author.id %}">{{ blog.author.username }}</a>
+                    </p>
+                    {{ blog.content }}
+                </div>
+            </div>
+    
+    
+        <!-- Sidebar Column -->
+        <div class="col-md-2 p-3" style="background-color: #f5ebeb; color: #888585; border-right: 1px solid #ccc; box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);">
+            <ul class="list-unstyled">
+                {% if user.is_authenticated %}
+                <!-- Display this if the user is logged in -->
+                <li class="mb-2">
+                    <p>You are logged in as <strong>{{ user.username }}</strong></p>
+                </li>
+                <li class="mb-2">
+                    <a class="nav-link" href="{% url 'filmapp:logout_user' %}">
+                        <i class="fa fa-sign-out mr-2"></i> Log Out
+                    </a>
+                </li>
+                {% else %}
+                <!-- Display this if the user is not logged in -->
+                <li class="mb-2">
+                    <a class="nav-link" href="/login/">
+                        <i class="fa fa-sign-in mr-2"></i> Log In
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a class="nav-link" href="/register/">
+                        <i class="fa-solid fa-user-plus"></i> Register
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+        
+
+    
+
+<style>
+    /* General styles */
+    body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+    }
+    .header {
+        background-color: #292a2c;
+        color: #ffffff;
+        padding: 20px 0;
+    }
+
+    /* Main content styles */
+    .main-content {
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+        background-color: #f5ebeb;
+        color: #888585;
+        box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    /* Blog container styles */
+    .blog-container {
+        padding: 20px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    /* Blog image styles */
+    .blog-image {
+        max-width: 100%; /* Ensure the image scales to fit its container */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: cover; /* Crop and center the image within its container */
+        border-radius: 5px;
+        width: 500px; /* Set a fixed width */
+        height: 300px; /* Set a fixed height */
+    }
+
+</style>
+    
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'filmapp/base.html' %}
+{%block title%}FilmShift | {%endblock%}
+
+<div class="center-content">
+    {% block content %}
+    <h1>Trending TV Series</h1>
+  
+    <div class="series-list">
+      {% for title, image_url, score in series_data %}
+        <div class="series-item">
+          <img src="{{ image_url }}" alt="{{ title }}" />
+          <p>{{ title }}</p>
+          <p>Audience Score: {{ score }}%</p>
+        </div>
+      {% endfor %}
+    </div>
+    {% endblock %}
+</div>
+
+

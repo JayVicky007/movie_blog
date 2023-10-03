@@ -1,0 +1,82 @@
+{% extends "filmapp/base.html" %}
+
+{% block title %}FilmShift | Create Post{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form class="card-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2 class="input" id="header" style="margin-top: 20px;">CREATE A POST</h2>
+
+                <div class="form-group">
+                    <label for="{{ form.title.id_for_label }}">Title:</label>
+                    <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" {% if form.title.value %}value="{{ form.title.value }}"{% endif %}>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.content.id_for_label }}">Content:</label>
+                    <textarea class="form-control" id="{{ form.content.id_for_label }}" name="{{ form.content.name }}">{{ form.content.value|default:'' }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Image:</label>
+                    <input type="file" class="form-control-file" id="{{ form.image.id_for_label }}" name="{{ form.image.name }}">
+                </div>
+
+                <div class="action text-center" style="margin-top: 5px;">
+                    <button class="action-button btn btn-primary" type="submit">Create Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* General styles */
+    body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+    }
+    .header {
+        background-color: #292a2c;
+        color: #ffffff;
+        padding: 20px 0;
+    }
+
+    /* Main content styles */
+    .main-content {
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+        background-color: #f5ebeb;
+        color: #888585;
+        box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    /* Blog container styles */
+    .blog-container {
+        padding: 20px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    /* Blog image styles */
+    .blog-image {
+        max-width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "filmapp/base.html" %}
+{% block title %}Posts by {{ author.username }} | FilmShift{% endblock %}
+{% block content %}
+
+<div class="container mx-auto" style="margin-top: 20px;">
+    <h1 class="text-center">Posts by {{ author.username }}</h1>
+    <ul class="list-group text-center">
+        {% for post in author_posts %}
+            <li class="list-group-item"><a href="{% url 'filmapp:blog_detail' pk=post.pk %}">{{ post.title }}</a></li>
+        {% empty %}
+            <p>No posts found for {{ author.username }}.</p>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    /* General styles */
+    body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+    }
+    .header {
+        background-color: #292a2c;
+        color: #ffffff;
+        padding: 20px 0;
+    }
+
+    /* Main content styles */
+    .main-content {
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+        background-color: #f5ebeb;
+        color: #888585;
+        box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    /* Blog container styles */
+    .blog-container {
+        padding: 20px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    /* Blog image styles */
+    .blog-image {
+        max-width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+</style>
+
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "filmapp/base.html" %}
+
+{% block title %}Sign Up |{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form class="card-form" method="post">
+                <h2 class="input" id="header" style="margin-top: 20px; text-align: center;">Sign up for an account</h2>
+                {{ form.media }}
+                <div class="form-group text-center">
+                    <div class="text-center">
+                        <label for="{{ form.username.id_for_label }}">Username:</label>
+                    </div>
+                    <div class="text-center">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <div class="text-center">
+                        <label for="{{ form.email.id_for_label }}">Email:</label>
+                    </div>
+                    <div class="text-center">
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <div class="text-center">
+                        <label for="{{ form.password1.id_for_label }}">Password:</label>
+                    </div>
+                    <div class="text-center">
+                        {{ form.password1 }}
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <div class="text-center">
+                        <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                    </div>
+                    <div class="text-center">
+                        {{ form.password2 }}
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="action text-center" style="margin-top: 5px;">
+                    <button class="action-button btn btn-primary" type="submit">Register Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* General styles */
+    body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+    }
+    .header {
+        background-color: #292a2c;
+        color: #ffffff;
+        padding: 20px 0;
+    }
+
+    /* Main content styles */
+    .main-content {
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+        background-color: #f5ebeb;
+        color: #888585;
+        box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    /* Blog container styles */
+    .blog-container {
+        padding: 20px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    /* Blog image styles */
+    .blog-image {
+        max-width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+</style>
+
+{% endblock %}
